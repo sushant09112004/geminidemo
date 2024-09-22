@@ -86,7 +86,7 @@ function Page() {
   };
 
   return (
-    <div className="bg-gray-300 min-h-screen">
+    <div className="bg-gray-30 min-h-screen"style={{ background: '#1E1A1A'}} >
       <div>
         <h1 className="font-bold text-4xl flex justify-center items-center h-20 m-6">
           Indian Constitution
