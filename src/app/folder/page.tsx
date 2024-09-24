@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { HiOutlineArchiveBoxXMark } from "react-icons/hi2";
 import { AiTwotoneMessage } from "react-icons/ai";
 import { LuArrowRight } from "react-icons/lu";
-
+import ChatBoatDesign from '@/components/ChatBoatDesign';
 interface Title {
   section: string;
   description: string;
@@ -86,7 +86,7 @@ function Page() {
   };
 
   return (
-    <div className="bg-gray-30 min-h-screen"style={{ background: '#1E1A1A'}} >
+    <div className="bg-gray-200 min-h-screen" >
       <div>
         <h1 className="font-bold text-4xl flex justify-center items-center h-20 m-6">
           Indian Constitution
@@ -122,45 +122,7 @@ function Page() {
         </div>
 
         {/* Chatbox logic */}
-        {showChatbox && (
-          <div
-            className="fixed bottom-0 right-0 w-full md:w-[30%] h-[80%] bg-white border-black border-2 p-4"
-            style={{ zIndex: 50 }} // Ensures chatbox is on top
-          >
-            <h2 className="font-bold text-lg mb-4">Nagrik Aur Samvidhan</h2>
-
-            {/* Chat Messages */}
-            <div className="h-[70%] overflow-y-scroll mb-4">
-              {messages.map((message, index) => (
-                <div key={index} className={`mb-2 ${message.role === 'user' ? 'text-right' : 'text-left'}`}>
-                  <span className={`inline-block px-4 py-2 ${message.role === 'user' ? 'bg-blue-200' : 'bg-gray-200'}`}>
-                    {message.content}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Input and Send Button */}
-            <div className="flex w-full items-center">
-              <textarea
-                placeholder="Enter your prompt"
-                className="h-12 w-[80%] border rounded-l-md p-2"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-              />
-              <div
-                className="w-[20%] h-12 text-black flex items-center justify-center rounded-r-md cursor-pointer bg-blue-500"
-                onClick={sendMessage}
-              >
-                <LuArrowRight className="text-xl text-white" />
-              </div>
-            </div>
-
-            <button onClick={toggleChatbox} className="absolute top-3 right-3 font-bold text-2xl">
-              <HiOutlineArchiveBoxXMark />
-            </button>
-          </div>
-        )}
+        {showChatbox && <ChatBoatDesign/>}
       </div>
     </div>
   );
