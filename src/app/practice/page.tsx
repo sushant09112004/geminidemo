@@ -35,13 +35,13 @@ export default function Completion() {
   };
 
   return (
-    <div className="mx-auto w-full max-w-md py-24 flex flex-col stretch">
+    <div className="flex items-center justify-center h-screen bg-gray-100"> {/* Center the div */}
       {/* Chatbox Container */}
-      <div className="fixed bottom-0 right-0 w-full md:w-[30%] h-[80%] bg-white border-black border-2 p-4 z-50">
+      <div className="relative flex flex-col w-full md:w-[50%] h-[80%]  border-black border-2 p-4 z-50 shadow-[0_4px_10px_rgba(0,0,0,1)] rounded-lg">
         <h2 className="font-bold text-lg mb-4">Nagrik Aur Samvidhan</h2>
 
         {/* Chat Messages */}
-        <div className="h-[70%] overflow-y-scroll mb-4">
+        <div className="flex-grow overflow-y-scroll mb-4"> {/* Make the chat messages grow */}
           {messages.map((message, index) => (
             <div
               key={index}
@@ -59,7 +59,7 @@ export default function Completion() {
         </div>
 
         {/* Input and Send Button */}
-        <form onSubmit={handleSendMessage} className="flex w-full items-center">
+        <form onSubmit={handleSendMessage} className="flex w-full items-center absolute bottom-0 left-0 p-4">
           <textarea
             placeholder="Enter your prompt"
             className="h-12 w-[80%] border rounded-l-md p-2"

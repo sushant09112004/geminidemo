@@ -1,69 +1,111 @@
 "use client";
-import LevelDashboard from "@/components/design";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import Lottie from '@lottielab/lottie-player/react';
+import { AiTwotoneMessage } from "react-icons/ai";
+import tajmahal from "@/app/assets/LandingPageImages/tajmahal.jpg";
+import gateway from "@/app/assets/LandingPageImages/gateway.jpg";
+import gateway2 from "@/app/assets/LandingPageImages/gateway2.jpg";
+import Link from 'next/link';
 
 export default function Home() {
+  const images = [tajmahal, gateway, gateway2]; // List of background images
+  const [currentImage, setCurrentImage] = useState(0); // State to track current image index
+  const [fade, setFade] = useState(true); // State to manage fade-in and fade-out
+
+  const displayDuration = 3000; // 3 seconds fully visible
+  const fadeDuration = 1000; // 1 second fade time
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false); // Start fading out
+
+      setTimeout(() => {
+        // Change image after fade-out finishes
+        setCurrentImage((prevImage) => (prevImage + 1) % images.length);
+        setFade(true); // Start fading in
+      }, fadeDuration); // Wait for the fade-out to complete
+    }, displayDuration + fadeDuration); // Total duration for each image
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, [images.length]);
+
   return (
-    // Apply the background image or gradient to the outermost div
-    <div
-      className="flex flex-col md:items-center justify-center min-h-screen bg-orange-300 bg-center bg-no-repeat bg-cover sm:bg-contain md:bg-cover lg:bg-cover xl:bg-cover text-white gap-5"
-    >
-      {/* Lottie Animation */}
-      <div className="h-[200px] w-[200px] mt-150px ml-100px">
-        <Lottie src="https://cdn.lottielab.com/l/ApEGCK1LkzN9Fq.json" autoplay />
-        <div className="flex justify-end bg-red-400 h-[20px] w-[50px] mt-[180px]"></div>
+    <div className="relative h-screen w-full">
+      {/* Background Images - Stacked for smooth transition */}
+      <div className="absolute inset-0">
+        <div
+          className={`absolute inset-0 transition-opacity duration-${fadeDuration}ms ${fade ? 'opacity-100' : 'opacity-0'}`}
+        >
+          <Image
+            src={images[currentImage]} // Current image
+            alt="Background"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+            className="z-0"
+          />
+        </div>
+
+        <div
+          className={`absolute inset-0 transition-opacity duration-${fadeDuration}ms ${fade ? 'opacity-0' : 'opacity-100'}`}
+        >
+          <Image
+            src={images[(currentImage + 1) % images.length]} // Next image to transition into
+            alt="Next Background"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+            className="z-0"
+          />
+        </div>
       </div>
 
-      {/* Gradient Circles */}
-      <div
-        className="flex items-center justify-center rounded-full w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 transition-all duration-100 ease-in cursor-pointer"
-        style={{
-          marginLeft: "10%",
-          background: 'linear-gradient(deg, #DB6C05 0%, #D9D9D9 33.33%, #FFF 66.67%, #25EA04 100%)',
-        }}
-      >
-        1
-      </div>
-
-      <div
-        className="flex items-center justify-center rounded-full bg-black w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32"
-        style={{ marginLeft: "50%" }}
-      >
-        2
-      </div>
-
-      <div
-        className="flex items-center justify-center rounded-full bg-black w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32"
-        style={{ marginLeft: "80%" }}
-      >
-        3
-      </div>
-
-      <div
-        className="flex items-center justify-center rounded-full bg-black w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32"
-        style={{ marginLeft: "40%" }}
-      >
-        4
-      </div>
-
-      <div
-        className="flex items-center justify-center rounded-full bg-black w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32"
-        style={{ marginLeft: "10%" }}
-      >
-        5
-      </div>
-      <div className="w-64 h-32rounded-full"
-      style={{
+      {/* Text Overlay */}
+      <div className="absolute inset-0 flex flex-col items-start justify-center z-10 ml-4 md:ml-8">
+  <h1 className="text-white text-3xl md:text-4xl font-bold bg-black bg-opacity-50 px-4 py-2 rounded-lg font-mono">
+    <ul className="list-disc pl-5 space-y-4">
+      <li className="hover:underline hover:decoration-white">
+        <Link href="/fun-and-learn">
+          <span>1)</span> Fun and Learn
+        </Link>
+      </li>
+      <li className="hover:underline hover:decoration-white">
+        <Link href="/online-games">
+          <span>2)</span> Online Games
+        </Link>
+      </li>
+      <li className="hover:underline hover:decoration-white">
+        <Link href="/animated-videos">
+          <span>3)</span> Animated Videos
+        </Link>
+      </li>
+      <li className="hover:underline hover:decoration-white">
+        <Link href="/quizzes-challenges">
+          <span>4)</span> Quizzes/Challenges
+        </Link>
+      </li>
+      <li className="hover:underline hover:decoration-white">
+        <Link href="/ai-summarizer">
+          <span>5)</span> AI Summarizer
+        </Link>
         
-        background: 'linear-gradient(90deg, #DB6C05 0%, #D9D9D9 33.33%, #FFF 66.67%, #25EA04 100%)',
-      }}
-      ></div>
+      </li>
+      <li className="hover:underline hover:decoration-white">
+        <Link href="/audiovisual-learning">
+          <span>5)</span> Audio-Visual-Learning
+        </Link>
+        
+      </li>
+    </ul>
+  </h1>
+</div>
 
-      {/* Button with hover effect */}
-      <button className="transform hover:scale-110 transition duration-300 bg-blue-500 text-white py-2 px-4 rounded">
-        Hover Me
-      </button>
+      {/* Chat Button */}
+      <div className="fixed bottom-10 right-10 flex justify-center items-center p-4 border-black border-2 bg-yellow-300 rounded-md">
+        <button className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14">
+          <AiTwotoneMessage className="w-6 h-6 md:w-8 md:h-8" />
+        </button>
+      </div>
     </div>
   );
 }

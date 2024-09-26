@@ -1,18 +1,14 @@
 "use client";
 import React, { useState } from 'react';
-import { HiOutlineArchiveBoxXMark } from "react-icons/hi2";
 import { AiTwotoneMessage } from "react-icons/ai";
-import { LuArrowRight } from "react-icons/lu";
+import Link from 'next/link'; // Import Link from next/link
 import ChatBoatDesign from '@/components/ChatBoatDesign';
+
 interface Title {
   section: string;
   description: string;
   img?: string; // Optional image property
-}
-
-interface Message {
-  role: 'user' | 'model';
-  content: string;
+  link?: string; // Optional link property
 }
 
 // Define the Title array with sections and descriptions
@@ -25,7 +21,8 @@ const Titles: Title[] = [
   {
     section: "Fundamental Rights",
     description:
-      "Fundamental Rights in the Indian Constitution guarantee civil liberties to all citizens, ensuring equality, freedom of speech, and protection from discrimination. These rights, outlined in Articles 12-35, include the right to equality, freedom, protection against exploitation, religious freedom, cultural and educational rights, and constitutional remedies."
+      "Fundamental Rights in the Indian Constitution guarantee civil liberties to all citizens, ensuring equality, freedom of speech, and protection from discrimination. These rights, outlined in Articles 12-35, include the right to equality, freedom, protection against exploitation, religious freedom, cultural and educational rights, and constitutional remedies.",
+    link: "/folder/fundamentalrights" // Link to the next page
   },
   {
     section: "Fundamental Duties",
@@ -41,78 +38,40 @@ const Titles: Title[] = [
 
 function Page() {
   const [showChatbox, setShowChatbox] = useState(false); // State to manage chatbox visibility
-  const [messages, setMessages] = useState<Message[]>([]); // Explicitly type messages
-  const [input, setInput] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const toggleChatbox = () => {
     setShowChatbox(!showChatbox); // Toggle the visibility of the chatbox
   };
 
-  const sendMessage = async () => {
-    if (!input) return;
-    setLoading(true);
-
-    // Add user message to chat
-    const newMessages: Message[] = [...messages, { role: 'user', content: input }];
-    setMessages(newMessages);
-
-    try {
-      // Send POST request to your API route
-      const response = await fetch('/api/chatbot', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: newMessages }),
-      });
-
-      // Stream the response from the backend
-      const reader = response.body?.getReader();
-      const decoder = new TextDecoder();
-      let result = '';
-      while (true) {
-        const { done, value } = await reader?.read()!;
-        if (done) break;
-        result += decoder.decode(value);
-      }
-
-      // Add model response to chat
-      setMessages([...newMessages, { role: 'model', content: result }]);
-    } catch (error) {
-      console.error('Error sending message:', error);
-    } finally {
-      setLoading(false);
-      setInput(''); // Clear the input field
-    }
-  };
-
   return (
-    <div className="bg-gray-200 min-h-screen" >
+    <div className="bg-gray-200 min-h-screen">
       <div>
         <h1 className="font-bold text-4xl flex justify-center items-center h-20 m-6">
           Indian Constitution
         </h1>
       </div>
-      <div className="bg-light-gray min-h-screen flex flex-col">
+      <div className="bg-light-gray min-h-screen flex">
         <div className="w-[75%] flex flex-col items-center justify-center mx-auto gap-7">
           {Titles.map((title, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-between p-4 border rounded-md border-black w-full transform transition duration-300 ease-in-out hover:scale-105"
-              style={{
-                background:
-                  'linear-gradient(45deg, #F9A75B 0%, #EAEAEA 33.33%, #FFFFFF 66.67%, #A8E1A2 100%)',
-              }}
-            >
-              <div className="p-3">
-                <img src="https://tse1.mm.bing.net/th?id=OIP.0CswRYC3VleST8MYZGwe0gHaED&pid=Api&P=0&h=180" alt={title.section} />
+            <Link key={index} href={title.link || '#'} passHref>
+              <div
+                className="flex items-center justify-between p-4 border rounded-md border-black w-full transform transition duration-300 ease-in-out hover:scale-105"
+                style={{
+                  background:
+                    'linear-gradient(45deg, #F9A75B 0%, #EAEAEA 33.33%, #FFFFFF 66.67%, #A8E1A2 100%)',
+                }}
+              >
+                <div className="p-3 flex">
+                  <img src="https://tse1.mm.bing.net/th?id=OIP.0CswRYC3VleST8MYZGwe0gHaED&pid=Api&P=0&h=180" alt={title.section} />
+                </div>
+                <div className="flex flex-col">
+                  <h2 className="font-bold sm:text-2xl md:text-xl mb-2 text-start">
+                    {title.section}
+                  </h2>
+                  <p className="text-gray-700 text-start">{title.description}</p>
+                </div>
               </div>
-              <div className="flex flex-col">
-                <h2 className="font-bold sm:text-2xl md:text-xl mb-2 text-start">
-                  {title.section}
-                </h2>
-                <p className="text-gray-700 text-start">{title.description}</p>
-              </div>
-            </div>
+            </Link>
           ))}
         </div>
 
@@ -122,7 +81,7 @@ function Page() {
         </div>
 
         {/* Chatbox logic */}
-        {showChatbox && <ChatBoatDesign/>}
+        {showChatbox && <ChatBoatDesign />}
       </div>
     </div>
   );
