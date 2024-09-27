@@ -1,5 +1,5 @@
+import SidebarDesign from "@/components/ui/SidebarDesign";
 import "./globals.css";
-import { SidebarDemo } from "@/components/demosidebar";
 
 export default function RootLayout({
   children,
@@ -8,11 +8,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
-       
-        {children}
-        <div className="fixed left-0 top-0">
-        <SidebarDemo />
+      <body className="antialiased flex">
+        {/* Sidebar on the left */}
+        <div className="fixed left-0 top-0 h-full w-[350px]"> {/* Sidebar width */}
+          <SidebarDesign />
+        </div>
+        {/* Main content area */}
+        <div className="ml-[350px] w-full"> {/* Margin-left to leave space for the sidebar */}
+          {children}
         </div>
       </body>
     </html>

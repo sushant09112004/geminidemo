@@ -12,9 +12,8 @@ export default function Home() {
       className="flex flex-col md:items-center justify-center min-h-screen bg-orange-300 bg-center bg-no-repeat bg-cover sm:bg-contain md:bg-cover lg:bg-cover xl:bg-cover text-white gap-5"
     >
       {/* Lottie Animation */}
-      <div className="h-[200px] w-[200px] mt-150px ml-100px">
-        <Lottie src="https://cdn.lottielab.com/l/ApEGCK1LkzN9Fq.json" autoplay />
-        <div className="flex justify-end bg-red-400 h-[20px] w-[50px] mt-[180px]"></div>
+      <div className="h-[500px] w-[250px] ">
+      <Lottie src="https://cdn.lottielab.com/l/BWniAGXXahJWju.json" autoplay />       <div className="flex justify-end bg-red-400 h-[20px] w-[50px] mt-[180px]"></div>
       </div>
 
       {/* Gradient Circles */}
@@ -56,10 +55,10 @@ export default function Home() {
         5
       </div>
       <div className="w-64 h-32rounded-full"
-      style={{
-        
-        background: 'linear-gradient(90deg, #DB6C05 0%, #D9D9D9 33.33%, #FFF 66.67%, #25EA04 100%)',
-      }}
+        style={{
+
+          background: 'linear-gradient(90deg, #DB6C05 0%, #D9D9D9 33.33%, #FFF 66.67%, #25EA04 100%)',
+        }}
       ></div>
 
       {/* Button with hover effect */}
@@ -67,7 +66,7 @@ export default function Home() {
         Hover Me
       </button>
       <div className="fixed top-0 left-0">
-      <SidebarDemo />
+        <SidebarDemo />
       </div>
     </div>
   );

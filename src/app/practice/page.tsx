@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useCompletion } from 'ai/react';
 import { HiOutlineArchiveBoxXMark } from "react-icons/hi2";
-
+import sidebarfinal from '@/components/Sidebarfinal'
 export default function Completion() {
   const {
     completion,
@@ -83,6 +83,7 @@ export default function Completion() {
         <button className="absolute top-3 right-3 font-bold text-2xl">
           <HiOutlineArchiveBoxXMark />
         </button>
+        
       </div>
     </div>
   );
