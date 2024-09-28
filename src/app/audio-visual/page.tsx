@@ -4,10 +4,7 @@ import Video from 'next-video';
 import { useTypewriter, Cursor } from 'react-simple-typewriter';
 import sample from '/videos/samplevideo.mp4'
 function Page() {
-  const { text } = useTypewriter({
-    words: ['Developer', 'Developer2'],
-    loop: 0, // Loop indefinitely
-  });
+ 
 
   return (
     <div className="bg-pink-100 h-screen flex flex-col justify-center items-center">
