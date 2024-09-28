@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { AiTwotoneMessage } from "react-icons/ai";
 import bgImage from '@/app/assets/Images/bg photos/gateway2.jpg';
-
+import Loader from '@/components/ui/Loader';
 import ChatBoatDesign from '@/components/ChatBoatDesign';
 interface TranslatedText {
     articleDescription: string;
@@ -132,10 +132,10 @@ const TranslationApp: React.FC = () => {
             </select>
     
             {loading ? (
-                <h1 className='flex justify-center items-center text-lg'>Loading...</h1>
+                <h1 className='flex justify-center items-center text-lg'><Loader/></h1>
             ) : (
                 <>
-                    <div className='flex flex-col sm:flex-row justify-center items-center w-full sm:w-[70%] mx-auto border border-black rounded-2xl mb-6 p-4 '>
+                    <div className='flex flex-col sm:flex-row justify-center items-center w-full sm:w-[70%] mx-auto border border-black rounded-2xl mb-6 p-4 bg-white'>
                         <div className='w-full sm:w-1/2'>
                             <h1>{translatedText?.PreambleHeading || textToTranslate.PreambleHeading}:</h1>
                             <p>{translatedText?.PreambleDescription || textToTranslate.PreambleDescription}</p>
