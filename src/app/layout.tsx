@@ -1,3 +1,5 @@
+'use client'
+import { usePathname } from 'next/navigation';
 import SidebarDesign from "@/components/ui/SidebarDesign";
 import "./globals.css";
 
@@ -6,15 +8,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+
   return (
     <html lang="en">
       <body className="antialiased flex">
-        {/* Sidebar on the left */}
-        <div className="fixed left-0 top-0 h-full w-[350px]"> {/* Sidebar width */}
-          <SidebarDesign />
-        </div>
+        {/* Conditionally render the sidebar, hide on homepage */}
+        {pathname !== '/' && (
+          <div className="fixed left-0 top-0 h-full w-[350px] bg-gray-100">
+            <SidebarDesign />
+          </div>
+        )}
         {/* Main content area */}
-        <div className="ml-[350px] w-full"> {/* Margin-left to leave space for the sidebar */}
+        <div className={pathname !== '/' ? "ml-[350px] w-full" : "w-full"}>
           {children}
         </div>
       </body>

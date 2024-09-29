@@ -25,7 +25,7 @@ const TranslationApp: React.FC = () => {
 
     const toggleChatbox = () => {
         setShowChatbox(!showChatbox); // Toggle the visibility of the chatbox
-      };
+    };
 
 
     const textToTranslate: TranslatedText = {
@@ -111,15 +111,15 @@ const TranslationApp: React.FC = () => {
     return (
         <div className='text-bold text-xl p-4'>
             <div
-        className="fixed inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${bgImage.src})`,
-          opacity: 0.5,
-          zIndex: -1, // Set to a lower index so it stays behind the content
-        }}
-      ></div>
+                className="fixed inset-0 bg-cover bg-center"
+                style={{
+                    backgroundImage: `url(${bgImage.src})`,
+                    opacity: 0.5,
+                    zIndex: -1, // Set to a lower index so it stays behind the content
+                }}
+            ></div>
             <h1 className='flex justify-center items-center text-3xl font-semibold mb-10'>Indian Constitution</h1>
-    
+
             <select className='mb-6 p-2 border rounded' onChange={handleChange} value={selectedLanguage}>
                 <option value="">Select a language</option>
                 <option value="hindi">Hindi</option>
@@ -130,50 +130,50 @@ const TranslationApp: React.FC = () => {
                 <option value="kannada">Kannada</option>
                 <option value="Bengali">Bengali</option>
             </select>
-    
+
             {loading ? (
-                <h1 className='flex justify-center items-center text-lg'><Loader/></h1>
+                <h1 className='flex justify-center items-center text-lg'><Loader /></h1>
             ) : (
                 <>
-                    <div className='flex flex-col sm:flex-row justify-center items-center w-full sm:w-[70%] mx-auto border border-black rounded-2xl mb-6 p-4 bg-white'>
-                        <div className='w-full sm:w-1/2'>
-                            <h1>{translatedText?.PreambleHeading || textToTranslate.PreambleHeading}:</h1>
+                    <div className='flex flex-col sm:flex-row justify-center items-center w-full sm:w-[70%] mx-auto border border-black rounded-2xl mb-6 p-4 bg-white opacity-70 text-black  transform transition duration-300 ease-in-out hover:scale-105'>
+                        <div className='w-full sm:w-[100%]'>
+                            <h1 className='font-bold text-xl'>{translatedText?.PreambleHeading || textToTranslate.PreambleHeading}:</h1>
                             <p>{translatedText?.PreambleDescription || textToTranslate.PreambleDescription}</p>
                         </div>
                     </div>
-    
-                    <div className='flex flex-col sm:flex-row justify-center items-center w-full sm:w-[70%] mx-auto border border-black rounded-2xl mb-6 p-4 bg-gradient-to-r from-yellow-200 via-gray-100 to-green-200'>
-                        <div className='w-full sm:w-1/2'>
-                            <h1>{translatedText?.FundamentalRightsHeading || textToTranslate.FundamentalRightsHeading}</h1>
+
+                    <div className='flex flex-col sm:flex-row justify-center items-center w-full sm:w-[70%] mx-auto border border-black rounded-2xl mb-6 p-4  bg-white opacity-70 text-black  transform transition duration-300 ease-in-out hover:scale-105'>
+                        <div className='w-full sm:w-[100%]'>
+                            <h1 className='font-bold text-xl'>{translatedText?.FundamentalRightsHeading || textToTranslate.FundamentalRightsHeading}</h1>
                             <p>{translatedText?.FundamentalRightsDescription || textToTranslate.FundamentalRightsDescription}</p>
                         </div>
                     </div>
-    
-                    <div className='flex flex-col sm:flex-row justify-center items-center w-full sm:w-[70%] mx-auto border border-black rounded-2xl mb-6 p-4 bg-gradient-to-r from-yellow-200 via-gray-100 to-green-200'>
-                        <div className='w-full sm:w-1/2'>
-                            <h1>{translatedText?.DirectivePrincipleHeading || textToTranslate.DirectivePrincipleHeading}</h1>
+
+                    <div className='flex flex-col sm:flex-row justify-center items-center w-full sm:w-[70%] mx-auto border border-black rounded-2xl mb-6 p-4  bg-white opacity-70 text-black  transform transition duration-300 ease-in-out hover:scale-105'>
+                        <div className='w-full sm:w-[100%]'>
+                            <h1 className='font-bold text-xl'>{translatedText?.DirectivePrincipleHeading || textToTranslate.DirectivePrincipleHeading}</h1>
                             <p>{translatedText?.DirectivePrincipleDescription || textToTranslate.DirectivePrincipleDescription}</p>
                         </div>
                     </div>
-    
-                    <div className='flex flex-col sm:flex-row justify-center items-center w-full sm:w-[70%] mx-auto border border-black rounded-2xl mb-6 p-4 bg-gradient-to-r from-yellow-200 via-gray-100 to-green-200'>
-                        <div className='w-full sm:w-1/2'>
-                            <h1>{translatedText?.FundamentalDutiesHeading || textToTranslate.FundamentalDutiesHeading}</h1>
+
+                    <div className='flex flex-col sm:flex-row justify-center items-center w-full sm:w-[70%] mx-auto border border-black rounded-2xl mb-6 p-4  bg-white opacity-70 text-black  transform transition duration-300 ease-in-out hover:scale-105'>
+                        <div className='w-full sm:w-[100%]'>
+                            <h1 className='font-bold text-xl'>{translatedText?.FundamentalDutiesHeading || textToTranslate.FundamentalDutiesHeading}</h1>
                             <p>{translatedText?.FundamentalDutiesDescription || textToTranslate.FundamentalDutiesDescription}</p>
                         </div>
                     </div>
-    
+
                     <div className="fixed bottom-10 right-10 flex justify-center items-center p-4 border-black border-2 w-30 h-30 pl-5 bg-yellow-300 rounded-md">
                         <button onClick={toggleChatbox}><AiTwotoneMessage className='w-25 h-25' /></button>
                     </div>
-    
+
                     {/* Chatbox logic */}
                     {showChatbox && <ChatBoatDesign />}
                 </>
             )}
         </div>
     );
-    
+
 };
 
 export default TranslationApp;

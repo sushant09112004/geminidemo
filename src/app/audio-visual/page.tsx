@@ -1,13 +1,15 @@
 'use client';
 import React from 'react';
 import Video from 'next-video';
+import Image from 'next/image';
 import { useTypewriter, Cursor } from 'react-simple-typewriter';
 import sample from '/videos/samplevideo.mp4'
+import onimg from '@/app/assets/playbutton/on.jpg'
 function Page() {
  
 
   return (
-    <div className="bg-pink-100 h-screen flex flex-col justify-center items-center">
+    <div className="bg-gray-100 h-screen flex flex-col justify-center items-center">
       {/* Video Section */}
       <div className='w-[70%] flex  justify-center items-center p-9'>
       <Video src={sample} poster="" />
@@ -17,11 +19,15 @@ function Page() {
       <div className="flex justify-between w-[70%] space-x-8">
         {/* Left Content */}
         <div className="w-[30%] p-5 bg-white rounded-lg shadow-md">
-          <h2 className="text-xl font-bold mb-4">Left Section</h2>
-          <p>
-            यहाँ आप अतिरिक्त सामग्री या नेविगेशन जोड़ सकते हैं। यह अनुभाग पृष्ठ के
-            बाईं ओर स्थित है।
-          </p>
+        <select className='mb-6 p-2 border rounded' >
+    <option value="">Select a Language</option>
+    <option value="basic">English</option>
+    <option value="premium">Hindi</option>
+    <option value="pro">Tamil</option>
+    <option value="enterprise">Haryanvi</option>
+</select>
+
+          <Image src={onimg} alt="img"></Image>
         </div>
 
         {/* Right Content */}
