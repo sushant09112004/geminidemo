@@ -4,6 +4,7 @@ import { AiTwotoneMessage } from "react-icons/ai";
 import bgImage from '@/app/assets/Images/bg photos/gateway2.jpg';
 import Loader from '@/components/ui/Loader';
 import ChatBoatDesign from '@/components/ChatBoatDesign';
+import Link from 'next/link';
 interface TranslatedText {
     articleDescription: string;
     PreambleHeading: string;
@@ -164,11 +165,11 @@ const TranslationApp: React.FC = () => {
                     </div>
 
                     <div className="fixed bottom-10 right-10 flex justify-center items-center p-4 border-black border-2 w-30 h-30 pl-5 bg-yellow-300 rounded-md">
-                        <button onClick={toggleChatbox}><AiTwotoneMessage className='w-25 h-25' /></button>
+                       <Link href="/practice"><button><AiTwotoneMessage className='w-25 h-25' /></button></Link> 
                     </div>
 
                     {/* Chatbox logic */}
-                    {showChatbox && <ChatBoatDesign />}
+                    {/* {showChatbox && <ChatBoatDesign />} */}
                 </>
             )}
         </div>
