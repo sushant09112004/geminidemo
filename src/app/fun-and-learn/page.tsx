@@ -2,8 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Learn from '../assets/Images/funandlearn/learn.jpg';
-import bgImage from '@/app/assets/Images/bg photos/gateway2.jpg';
-
+import bgImage from '@/app/assets/Images/bg photos/gateway2.jpg'
 function Page() {
   return (
     <div className="relative">
